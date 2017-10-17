@@ -95,7 +95,7 @@ public class VersionUpdateUtils {
             e.printStackTrace();
         } catch (JSONException e) {
             handler.sendEmptyMessage(MESSAGE_JSON_ERROR);
-            e.printStackTrace();
+           
         }
 
 
