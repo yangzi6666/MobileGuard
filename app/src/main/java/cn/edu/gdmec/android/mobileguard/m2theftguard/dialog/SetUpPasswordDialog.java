@@ -25,7 +25,7 @@ public class SetUpPasswordDialog extends Dialog implements View.OnClickListener{
      /*回调接口*/
      private MyCallBack myCallBack;
 
-    public void onCreate(Bundle saveInstanceState){
+    protected void onCreate(Bundle saveInstanceState){
         setContentView(R.layout.setup_password_dialog);
         super.onCreate(saveInstanceState);
         initView();

@@ -4,7 +4,7 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.inputmethodservice.Keyboard;
 import android.provider.Settings;
-import android.support.v4.content.SharedPreferencesCompat;
+//import android.support.v4.content.SharedPreferencesCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.text.TextUtils;
@@ -16,6 +16,7 @@ import android.widget.Toast;
 
 import cn.edu.gdmec.android.mobileguard.R;
 import cn.edu.gdmec.android.mobileguard.m1home.adapter.HomeAdapter;
+import cn.edu.gdmec.android.mobileguard.m2theftguard.LostFindActivity;
 import cn.edu.gdmec.android.mobileguard.m2theftguard.dialog.InterPasswordDialog;
 import cn.edu.gdmec.android.mobileguard.m2theftguard.dialog.SetUpPasswordDialog;
 import cn.edu.gdmec.android.mobileguard.m2theftguard.utils.MD5Utils;
@@ -23,13 +24,15 @@ import cn.edu.gdmec.android.mobileguard.m2theftguard.utils.MD5Utils;
 public class HomeActivity extends AppCompatActivity {
     private GridView gv_home;
     private long mExitTime;
-private SharedPreferences msharePreferences;
+private SharedPreferences msharedPreferences;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
         getSupportActionBar().hide();
         gv_home=(GridView)findViewById(R.id.gv_home);
+        msharedPreferences=getSharedPreferences("config",MODE_PRIVATE);
         gv_home.setAdapter(new HomeAdapter(HomeActivity.this));
         gv_home.setOnItemClickListener(new AdapterView.OnItemClickListener(){
             public void onItemClick(AdapterView<?> adapterView, View view,int i,long l ){
@@ -37,7 +40,7 @@ private SharedPreferences msharePreferences;
                 switch (i){
                     case 0:
                         //点击手机防盗
-                        if(isSetUpPassword()){
+                        if (isSetUpPassword() ){
                             //弹出输入密码对话框
                             showInterPswdDialog();
                         }else{
@@ -56,8 +59,7 @@ private SharedPreferences msharePreferences;
         Intent intent = new Intent(HomeActivity.this,cls);
         startActivity(intent);
     }
-    private void showSetUpPswdDialog() {
-    }
+
 
     public boolean onKeyDown(int keyCode, KeyEvent event){
         if (keyCode==KeyEvent.KEYCODE_BACK){
@@ -73,7 +75,7 @@ private SharedPreferences msharePreferences;
     }
 
     /*弹出设置密吗对话框 本方法需要完成手机防盗模块之后才能启用*/
-    private void showSetUpPswDialog(){
+    private void showSetUpPswdDialog(){
         final SetUpPasswordDialog setUpPasswordDialog = new  SetUpPasswordDialog(HomeActivity.this);
         setUpPasswordDialog.setCallBack(new SetUpPasswordDialog.MyCallBack(){
 
@@ -118,7 +120,7 @@ private SharedPreferences msharePreferences;
                        }else if (password.equals(MD5Utils.encode(mInPswDialog.getPassword()))){
                            //进入防盗主界面
                            mInPswDialog.dismiss();
-                           //startActivity(LostFindActivity.class);
+                           startActivity(LostFindActivity.class);
                            Toast.makeText(HomeActivity.this,"可以进入手机防盗模块",Toast.LENGTH_LONG).show();
                        }else{
                            //对话框消失，弹出提示
@@ -137,14 +139,14 @@ private SharedPreferences msharePreferences;
            }
         /*保存密码 本方法需要完成手机防盗模块之后才能启用*/
         private  void savePswd(String affirmPwsd){
-       SharedPreferences.Editor edit = msharePreferences.edit();
+       SharedPreferences.Editor edit = msharedPreferences.edit();
             //为防止用户隐私被泄露，因此需要加密密码
             edit.putString("PhoneAntiTheftPWD",MD5Utils.encode(affirmPwsd));
             edit.commit();
         }
         /*获取密码*/
         private String getPassword() {
-            String password = msharePreferences.getString("PhoneAntiTheftPWD", null);
+            String password = msharedPreferences.getString("PhoneAntiTheftPWD", null);
             if (TextUtils.isEmpty(password)) {
                 return "";
 
@@ -152,8 +154,8 @@ private SharedPreferences msharePreferences;
             return password;
         }
         //判断用户是否设置手机防盗密码
-    public boolean isSetUpPassword() {
-        String password = msharePreferences.getString("PhoneAntiTheftPWD",null);
+    private boolean isSetUpPassword() {
+        String password = msharedPreferences.getString("PhoneAntiTheftPWD",null);
         if (TextUtils.isEmpty(password)){
             return false;
         }
