@@ -51,11 +51,11 @@ public class Setup3Activity extends BaseSetUpActivity implements View.OnClickLis
     }
     @Override
     public void  onClick(View view){
-        switch (view.getId()){
-            case R.id.btn_addcontact:
-                startActivityForResult(new Intent(this,ContactSelectActivity.class),0);
-                break;
-        }
+        //switch (view.getId()){
+          //  case R.id.btn_addcontact:
+            //    startActivityForResult(new Intent(this,ContactSelectActivity.class),0);
+             //   break;
+        //}
     }
     @Override
     protected void onActivityResult(int requestCode,int resultCode,Intent data) {
