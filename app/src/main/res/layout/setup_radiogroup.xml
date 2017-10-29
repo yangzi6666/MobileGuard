@@ -13,27 +13,27 @@
             android:layout_width="10dp"
             android:layout_height="10dp"
             android:button="@null"
-            android:id="@+id/rd_first"
+            android:id="@+id/rb_first"
             android:background="@drawable/circle_purple_bg_selector"/>
         <RadioButton
             android:layout_width="10dp"
             android:layout_height="10dp"
             android:button="@null"
-            android:id="@+id/rd_second"
+            android:id="@+id/rb_second"
             android:layout_marginLeft="15dp"
             android:background="@drawable/circle_purple_bg_selector"/>
         <RadioButton
             android:layout_width="10dp"
             android:layout_height="10dp"
             android:button="@null"
-            android:id="@+id/rd_third"
+            android:id="@+id/rb_third"
             android:layout_marginLeft="15dp"
             android:background="@drawable/circle_purple_bg_selector"/>
         <RadioButton
             android:layout_width="10dp"
             android:layout_height="10dp"
             android:button="@null"
-            android:id="@+id/rd_four"
+            android:id="@+id/rb_four"
             android:layout_marginLeft="15dp"
             android:background="@drawable/circle_purple_bg_selector"/>
 

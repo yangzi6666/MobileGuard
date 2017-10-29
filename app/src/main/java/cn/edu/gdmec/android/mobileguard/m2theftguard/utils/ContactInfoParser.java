@@ -19,8 +19,8 @@ import cn.edu.gdmec.android.mobileguard.m2theftguard.entity.ContactInfo;
 public class ContactInfoParser {
     public static List<ContactInfo> getSystemContact(Context context){
         ContentResolver resolver = context.getContentResolver();
-        Uri uri = Uri.parse("contend://com.android.contacts/raw_contacts");
-        Uri datauri = Uri.parse("contend://com.android.contacts/data");
+        Uri uri = Uri.parse("content://com.android.contacts/raw_contacts");
+        Uri datauri = Uri.parse("content://com.android.contacts/data");
         List<ContactInfo> infos = new ArrayList<ContactInfo>();
         Cursor cursor = resolver.query(uri, new String[] { "contact_id" },null,null,null);
         while (cursor.moveToNext()) {
@@ -40,6 +40,7 @@ public class ContactInfoParser {
                         info.name = data1;
                     } else if ("vnd.android.cursor.item/phone_v2".equals(mimetype)) {
                         System.out.println("电话=" + data1);
+                        info.phone = data1;
                     }
                 }
                 if (TextUtils.isEmpty(info.name) && TextUtils.isEmpty(info.phone))

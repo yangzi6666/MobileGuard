@@ -28,7 +28,7 @@
     </RelativeLayout>
     <View
         android:layout_width="match_parent"
-        android:layout_height="50dp"
+        android:layout_height="1.0px"
         android:background="#10000000"/>
     <RelativeLayout
         android:layout_width="match_parent"
@@ -40,6 +40,7 @@
             android:layout_alignParentLeft="true"
             android:layout_centerVertical="true"
             android:layout_marginLeft="10dp"
+            android:text="防盗保护是否开启"
             android:textColor="@color/purple"  />
         <ToggleButton
             android:id="@+id/togglebtn_lostfind"
@@ -59,7 +60,7 @@
         android:background="#10000000" />
 
     <RelativeLayout
-        android:id="@+id/rl_intersetup_wizard"
+        android:id="@+id/rl_inter_setup_wizard"
         android:layout_width="match_parent"
         android:layout_height="50dp">
 
@@ -153,7 +154,7 @@
                 android:layout_alignParentLeft="true"
                 android:layout_centerVertical="true"
                 android:layout_marginLeft="10dp"
-                android:drawableLeft="@drawable/location_icon_small"
+                android:drawableLeft="@drawable/lock_screen_icon_small"
                 android:drawablePadding="5dp"
                 android:text="远程锁屏"
                 android:textColor="@color/purple"/>
@@ -173,7 +174,7 @@
                 android:layout_alignParentLeft="true"
                 android:layout_centerVertical="true"
                 android:layout_marginLeft="10dp"
-                android:drawableLeft="@drawable/location_icon_small"
+                android:drawableLeft="@drawable/delete_data_small"
                 android:drawablePadding="5dp"
                 android:text="远程删除数据"
                 android:textColor="@color/purple"/>

@@ -23,7 +23,7 @@ public class Setup2Activity extends BaseSetUpActivity implements View.OnClickLis
         super.onCreate(saveInstanceState);
         setContentView(R.layout.activity_setup_2);
         //设置第一个小圆点的颜色
-        ((RadioButton)findViewById(R.id.rd_second)).setChecked(true);
+        ((RadioButton)findViewById(R.id.rb_second)).setChecked(true);
         mTelephonyManager = (TelephonyManager) getSystemService(TELEPHONY_SERVICE);
         mBindsSIMBtn = (Button) findViewById(R.id.btn_bind_sim);
         mBindsSIMBtn.setOnClickListener(this);

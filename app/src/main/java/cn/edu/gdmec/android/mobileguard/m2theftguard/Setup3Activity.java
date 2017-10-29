@@ -22,9 +22,9 @@ public class Setup3Activity extends BaseSetUpActivity implements View.OnClickLis
         super.onCreate(saveInstanceState);
         setContentView(R.layout.activity_setup_3);
         //设置第一个小圆点的颜色
-        ((RadioButton)findViewById(R.id.rd_third)).setChecked(true);
+        ((RadioButton)findViewById(R.id.rb_third)).setChecked(true);
 
-        ((RadioButton)findViewById(R.id.rd_third)).setChecked(true);
+        ((RadioButton)findViewById(R.id.rb_third)).setChecked(true);
         findViewById(R.id.btn_addcontact).setOnClickListener(this);
         mInputPhone = (EditText) findViewById(R.id.et_inputphone);
         String safephone=sp.getString("safephone",null);
@@ -51,11 +51,11 @@ public class Setup3Activity extends BaseSetUpActivity implements View.OnClickLis
     }
     @Override
     public void  onClick(View view){
-        //switch (view.getId()){
-          //  case R.id.btn_addcontact:
-            //    startActivityForResult(new Intent(this,ContactSelectActivity.class),0);
-             //   break;
-        //}
+        switch (view.getId()){
+            case R.id.btn_addcontact:
+                startActivityForResult(new Intent(this,ContactSelectActivity.class),0);
+              break;
+       }
     }
     @Override
     protected void onActivityResult(int requestCode,int resultCode,Intent data) {
