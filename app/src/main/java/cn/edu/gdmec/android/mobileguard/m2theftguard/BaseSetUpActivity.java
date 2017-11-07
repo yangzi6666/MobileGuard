@@ -14,7 +14,7 @@ import cn.edu.gdmec.android.mobileguard.R;
 /**
  * Created by Administrator on 2017/10/19.
  */
-
+//
 public abstract class BaseSetUpActivity extends AppCompatActivity{
      public SharedPreferences sp;
     //手势识别类
