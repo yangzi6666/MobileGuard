@@ -25,6 +25,7 @@ import cn.edu.gdmec.android.mobileguard.m2theftguard.dialog.SetUpPasswordDialog;
 import cn.edu.gdmec.android.mobileguard.m2theftguard.receiver.MyDeviceAdminReceiver;
 import cn.edu.gdmec.android.mobileguard.m2theftguard.utils.MD5Utils;
 import cn.edu.gdmec.android.mobileguard.m3communicationguard.SecurityPhoneActivity;
+import cn.edu.gdmec.android.mobileguard.m4appmanager.AppManagerActivity;
 
 public class HomeActivity extends AppCompatActivity {
     private GridView gv_home;
@@ -36,7 +37,7 @@ private SharedPreferences msharedPreferences;
     //申请权限
     private ComponentName componentName;
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    protected void onCreate(final Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
         getSupportActionBar().hide();
@@ -59,6 +60,9 @@ private SharedPreferences msharedPreferences;
                         break;
                     case 1:
                         startActivity(SecurityPhoneActivity.class);
+                        break;
+                    case 2:
+                        startActivity(AppManagerActivity.class);
                         break;
                 }
             }

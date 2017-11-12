@@ -83,6 +83,7 @@ public class AddBlackNumberActivity extends AppCompatActivity implements View.On
                     blackContactInfo.phoneNumber = number;
                     blackContactInfo.contactName = name;
                     blackContactInfo.type = type;
+
                     if (mSmsCB.isChecked() & mTelCB.isChecked()){
                         blackContactInfo.mode = 3;
                     }else if (mSmsCB.isChecked() & !mTelCB.isChecked()){

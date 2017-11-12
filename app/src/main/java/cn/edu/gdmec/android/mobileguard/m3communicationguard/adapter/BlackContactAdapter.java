@@ -76,9 +76,10 @@ public class BlackContactAdapter extends BaseAdapter{
         }
         holder.mNameTV.setText(contactInfos.get(i).contactName + "(" + contactInfos.get(i).phoneNumber + ")");
         holder.mModeTV.setText(contactInfos.get(i).getModeString(contactInfos.get(i).mode));
-        holder.mTypeTV.setText(contactInfos.get(i).getModeString(contactInfos.get(i).mode));
+        holder.mTypeTV.setText(contactInfos.get(i).type);
         holder.mNameTV.setTextColor(context.getResources().getColor(R.color.bright_purple));
         holder.mModeTV.setTextColor(context.getResources().getColor(R.color.bright_purple));
+        holder.mTypeTV.setTextColor(context.getResources().getColor(R.color.bright_purple));
         holder.mContactImgv.setBackgroundResource(R.drawable.brightpurple_contact_icon);
         holder.mDeleteView.setOnClickListener(new View.OnClickListener(){
             public void onClick(View view){
