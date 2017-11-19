@@ -136,7 +136,7 @@ public class AppManagerAdapter extends BaseAdapter {
         viewHolder.mShareAppTV.setOnClickListener(listener);
         viewHolder.mSettingAppTV.setOnClickListener(listener);
         viewHolder.mUninstallTV.setOnClickListener(listener);
-        viewHolder.mActivityAppTV.setOnClickListener(listener);
+        viewHolder.mAboutAppTV.setOnClickListener(listener);
 
         return view;
     }

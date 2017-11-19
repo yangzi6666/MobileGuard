@@ -35,6 +35,12 @@ public class AppInfoParser {
             appinfo.icon = icon;
             String appname = packInfo.applicationInfo.loadLabel(pm).toString();
             appinfo.appName = appname;
+            //关于-版本
+            String version = packInfo.versionName;
+            appinfo.appVersion = version;
+            //关于-下载时间
+            String installTime = packInfo.applicationInfo.loadLabel(pm).toString();
+            appinfo.appVersion = version;
             //应用程序apk包的路径
             String apkpath = packInfo.applicationInfo.sourceDir;
             appinfo.apkPath = apkpath;

@@ -4,6 +4,8 @@ import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.pm.ActivityInfo;
+import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
 import android.net.Uri;
 import android.widget.Toast;
@@ -78,7 +80,7 @@ public class EngineUtils {
     public static void showAboutDialog(Context context, AppInfo appInfo){
         AlertDialog.Builder builder = new AlertDialog.Builder(context);
         builder.setTitle("MobileGuard");	    //设置对话框标题
-        builder.setMessage("Version："+"1.2"+"\nInstall time："+"2017年11月12日下午21:33:00"
+        builder.setMessage("Version："+  appInfo.appVersion+"\nInstall time："+"2017年11月12日下午21:33:00"
                 +"\nCertificate issuer："+"CN=York Cui,OU=Computer&Design College,O=Guangdong Mechanical" +
                 "&Electrical Polytechnic,L=Guangzhou,ST=Guangdong,C=CN"
                 +"\nPermissions："+"" +
@@ -103,7 +105,30 @@ public class EngineUtils {
 
     }
     public static void ActivityApp(Context context, AppInfo appInfo){
+        AlertDialog.Builder builder = new AlertDialog.Builder(context);
+        builder.setTitle(appInfo.appName);	    //设置对话框标题
+        builder.setMessage("Version："+"1.2"+"\nInstall time："+"2017年11月12日下午21:33:00"
+                +"\nCertificate issuer："+"CN=York Cui,OU=Computer&Design College,O=Guangdong Mechanical" +
+                "&Electrical Polytechnic,L=Guangzhou,ST=Guangdong,C=CN"
+                +"\nPermissions："+"" +
+                "" +
+                "\nandroid.permission.INTERNET"+"\nandroid.permission.WRITE_EXTERNAL_STORAGE"
+                +"\nandroid.permission.READ+PHONE_STATE"+"\nandroid.permission.RECEIVE_BOOT_COMP;ETED"
+                +"\nandroid.permission.PEAD_CONTACTS");
 
+        builder.setPositiveButton("确认", new DialogInterface.OnClickListener() {
+
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                switch (which) {
+                    case AlertDialog.BUTTON_POSITIVE:// "确认"按钮退出程序
+
+                        break;
+                }
+            }
+        });
+        AlertDialog dialog = builder.create();	//创建对话框
+        dialog.show();
     }
 
 }
