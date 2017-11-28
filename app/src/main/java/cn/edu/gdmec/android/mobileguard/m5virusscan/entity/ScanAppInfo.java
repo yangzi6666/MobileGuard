@@ -12,4 +12,7 @@ public class ScanAppInfo {
     public String packagename;
     public String description;
     public Drawable appicon;
+    public String virusScanUrl;
+    public String md5info;
 }
+
