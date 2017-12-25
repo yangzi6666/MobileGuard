@@ -1,11 +1,27 @@
 <?xml version="1.0" encoding="utf-8"?>
-<translate xmlns:android="http://schemas.android.com/apk/res/android"
-    android:fromXDelta="0"
-    android:toXDelta="100%p"
+<!--显示下一步，当前页面出去的效果-->
+<!--<translate xmlns:android="http://schemas.android.com/apk/res/android"
+    android:fromXDelta="0%p"
+    android:toXDelta="-100%p"
     android:fromYDelta="0"
     android:toYDelta="0"
     android:duration="500"
     android:repeatCount="0"
+
     >
 
-</translate>
+</translate>-->
+
+<set xmlns:android="http://schemas.android.com/apk/res/android">
+<scale
+    android:duration="1000"
+    android:fillAfter="false"
+    android:fromXScale="0.0"
+    android:fromYScale="0.0"
+    android:interpolator="@android:anim/accelerate_decelerate_interpolator"
+    android:pivotX="50%"
+    android:pivotY="50%"
+    android:toXScale="1.0"
+    android:toYScale="1.0"
+    />
+</set>

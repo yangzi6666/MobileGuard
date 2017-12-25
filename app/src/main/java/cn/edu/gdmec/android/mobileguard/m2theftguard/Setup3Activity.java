@@ -12,56 +12,59 @@ import android.widget.Toast;
 import cn.edu.gdmec.android.mobileguard.R;
 
 /**
- * Created by Administrator on 2017/10/19.
+ * Created by 38322 on 2017/10/12.
  */
 
-public class Setup3Activity extends BaseSetUpActivity implements View.OnClickListener{
+public class Setup3Activity  extends  BaseSetUpActivity implements View.OnClickListener{
     private EditText mInputPhone;
-    @Override
-    protected void onCreate(Bundle saveInstanceState){
-        super.onCreate(saveInstanceState);
-        setContentView(R.layout.activity_setup_3);
-        //设置第一个小圆点的颜色
-        ((RadioButton)findViewById(R.id.rb_third)).setChecked(true);
 
-        ((RadioButton)findViewById(R.id.rb_third)).setChecked(true);
+    @Override
+    protected  void onCreate(Bundle savedInstanceState){
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_setup_3);
+        //设置第3个小圆点的颜色
+        ((RadioButton) findViewById(R.id.rb_third)).setChecked(true);
+        ((RadioButton) findViewById(R.id.rb_third)).setChecked(true);
+
         findViewById(R.id.btn_addcontact).setOnClickListener(this);
-        mInputPhone = (EditText) findViewById(R.id.et_inputphone);
-        String safephone=sp.getString("safephone",null);
-        if (!TextUtils.isEmpty(safephone)){
-            mInputPhone.setText(safephone);
+        mInputPhone=(EditText) findViewById(R.id.et_inputphone);
+        String safaphone=sp.getString("safaphone",null);
+        if(!TextUtils.isEmpty(safaphone)){
+            mInputPhone.setText(safaphone);
         }
     }
     @Override
-    public void showNext() {
-        String safePhone = mInputPhone.getText().toString().trim();
-        if (TextUtils.isEmpty(safePhone)){
+    public  void showNext(){
+        //判断文本输入框中是否有电话号码
+        String safaPhone=mInputPhone.getText().toString().trim();
+        if(TextUtils.isEmpty(safaPhone)){
             Toast.makeText(this,"请输入安全号码",Toast.LENGTH_LONG).show();
             return;
         }
-        SharedPreferences.Editor edit = sp.edit();
-        edit.putString("safephone",safePhone);
+        SharedPreferences.Editor edit=sp.edit();
+        edit.putString("safephone",safaPhone);
         edit.commit();
         startActivityAndFinishSelf(Setup4Activity.class);
     }
-
     @Override
-    public void showPre() {
+    public  void showPre(){
         startActivityAndFinishSelf(Setup2Activity.class);
     }
     @Override
-    public void  onClick(View view){
+    public  void onClick(View view){
         switch (view.getId()){
-            case R.id.btn_addcontact:
+            case  R.id.btn_addcontact:
+                //启动联系人选择activity拼获取返回值
                 startActivityForResult(new Intent(this,ContactSelectActivity.class),0);
-              break;
-       }
+                break;
+        }
     }
+    //获取被调用的activity的返回值
     @Override
-    protected void onActivityResult(int requestCode,int resultCode,Intent data) {
+    protected  void onActivityResult(int requestCode,int resultCode,Intent data){
         super.onActivityResult(requestCode,resultCode,data);
-        if (data!=null){
-            String phone = data.getStringExtra("phone");
+        if(data!=null){
+            String phone=data.getStringExtra("phone");
             mInputPhone.setText(phone);
         }
     }
