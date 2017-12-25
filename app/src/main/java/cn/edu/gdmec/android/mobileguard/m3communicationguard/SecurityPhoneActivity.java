@@ -1,8 +1,8 @@
 package cn.edu.gdmec.android.mobileguard.m3communicationguard;
 
 import android.content.Intent;
-import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.os.Bundle;
 import android.view.View;
 import android.view.Window;
 import android.widget.AbsListView;
@@ -20,17 +20,13 @@ import cn.edu.gdmec.android.mobileguard.m3communicationguard.adapter.BlackContac
 import cn.edu.gdmec.android.mobileguard.m3communicationguard.db.dao.BlackNumberDao;
 import cn.edu.gdmec.android.mobileguard.m3communicationguard.entity.BlackContactInfo;
 
-/**
- * Created by Administrator on 2017/11/5 0005.
- */
-
 public class SecurityPhoneActivity extends AppCompatActivity implements View.OnClickListener{
     private FrameLayout mHaveBlackNumber;
     private FrameLayout mNoBlackNumber;
     private BlackNumberDao dao;
     private ListView mListView;
     private int pagenumber = 0;
-    private int pagesize = 999;
+    private int pagesize = 20;
     private int totalNumber;
     private List<BlackContactInfo> pageBlackNumber = new ArrayList<BlackContactInfo>();
     private BlackContactAdapter adapter;
@@ -38,21 +34,22 @@ public class SecurityPhoneActivity extends AppCompatActivity implements View.OnC
     private void fillData(){
         dao = new BlackNumberDao(SecurityPhoneActivity.this);
         totalNumber = dao.getTotalNumber();
-        if (totalNumber == 0){
+        if(totalNumber == 0){
             mHaveBlackNumber.setVisibility(View.GONE);
             mNoBlackNumber.setVisibility(View.VISIBLE);
-        }else if (totalNumber > 0){
+        }else if(totalNumber>0){
             mHaveBlackNumber.setVisibility(View.VISIBLE);
             mNoBlackNumber.setVisibility(View.GONE);
             pagenumber = 0;
-            if (pageBlackNumber.size() > 0){
+            if(pageBlackNumber.size() > 0){
                 pageBlackNumber.clear();
             }
             pageBlackNumber.addAll(dao.getPageBlackNumber(pagenumber,pagesize));
-            if (adapter == null){
+            if(adapter == null){
                 adapter = new BlackContactAdapter(pageBlackNumber,SecurityPhoneActivity.this);
-                adapter.setCallback(new BlackContactAdapter.BlackContactCallBack(){
-                    public void DataSizeChanged(){
+                adapter.setCallBack(new BlackContactAdapter.BlackConactCallBack(){
+                    @Override
+                    public void DataSizeChanged() {
                         fillData();
                     }
                 });
@@ -62,43 +59,43 @@ public class SecurityPhoneActivity extends AppCompatActivity implements View.OnC
             }
         }
     }
-
     private void initView(){
         findViewById(R.id.rl_titlebar).setBackgroundColor(getResources().getColor(R.color.bright_purple));
-        final ImageView mLeftImgv = (ImageView) findViewById(R.id.imgv_leftbtn);
+        ImageView mLeftImgv = (ImageView) findViewById(R.id.imgv_leftbtn);
         ((TextView) findViewById(R.id.tv_title)).setText("通讯卫士");
         mLeftImgv.setOnClickListener(this);
         mLeftImgv.setImageResource(R.drawable.back);
-        mHaveBlackNumber = (FrameLayout) findViewById(R.id.fl_haveblacknumber);
+        mHaveBlackNumber = (FrameLayout) findViewById(R.id.fl_haveblaknumber);
         mNoBlackNumber = (FrameLayout) findViewById(R.id.fl_noblacknumber);
         findViewById(R.id.btn_addblacknumber).setOnClickListener(this);
-        mListView = (ListView) findViewById(R.id.lv_blacknumber);
-        mListView.setOnScrollListener(new AbsListView.OnScrollListener(){
-            public void onScrollStateChanged(AbsListView absListView, int i){
+        mListView = (ListView) findViewById(R.id.lv_blacknumbers);
+        mListView.setOnScrollListener(new AbsListView.OnScrollListener() {
+            @Override
+            public void onScrollStateChanged(AbsListView absListView, int i) {
                 switch (i){
                     case AbsListView.OnScrollListener.SCROLL_STATE_FLING:
-                        int lastVistblePosition = mListView.getLastVisiblePosition();
-                        if (lastVistblePosition == pageBlackNumber.size() - 1){
+                        int lastVisiblePosition = mListView.getLastVisiblePosition();
+                        if(lastVisiblePosition == pageBlackNumber.size() - 1){
                             pagenumber++;
-                            if (pagenumber * pagesize >= totalNumber){
-                                Toast.makeText(SecurityPhoneActivity.this,
-                                        "没有更多的数据了", Toast.LENGTH_LONG).show();
+                            if(pagenumber * pagesize >= totalNumber){
+                                Toast.makeText(SecurityPhoneActivity.this,"没有更多的数据了",Toast.LENGTH_LONG).show();
                             }else{
-                                pageBlackNumber.addAll(dao.getPageBlackNumber(
-                                        pagenumber, pagesize));
+                                pageBlackNumber.addAll(dao.getPageBlackNumber(pagenumber,pagesize));
                                 adapter.notifyDataSetChanged();
                             }
                         }
                         break;
                 }
             }
-            public void onScroll(AbsListView absListView, int i, int i1, int i2){
 
+            @Override
+            public void onScroll(AbsListView absListView, int i, int i1, int i2) {
             }
         });
     }
 
-    protected void onCreate(Bundle savedInstanceState){
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         getSupportActionBar().hide();
         setContentView(R.layout.activity_security_phone);
@@ -106,8 +103,9 @@ public class SecurityPhoneActivity extends AppCompatActivity implements View.OnC
         fillData();
     }
 
-    public void onClick(View view){
-        switch (view.getId()){
+    @Override
+    public void onClick(View view) {
+        switch(view.getId()){
             case R.id.imgv_leftbtn:
                 finish();
                 break;
@@ -117,9 +115,10 @@ public class SecurityPhoneActivity extends AppCompatActivity implements View.OnC
         }
     }
 
-    protected void onResume(){
+    @Override
+    protected void onResume() {
         super.onResume();
-        if (dao.getTotalNumber() > 0){
+        if(dao.getTotalNumber() > 0){
             mHaveBlackNumber.setVisibility(View.VISIBLE);
             mNoBlackNumber.setVisibility(View.GONE);
         }else{
@@ -129,7 +128,8 @@ public class SecurityPhoneActivity extends AppCompatActivity implements View.OnC
         pagenumber = 0;
         pageBlackNumber.clear();
         pageBlackNumber.addAll(dao.getPageBlackNumber(pagenumber,pagesize));
-        if (adapter != null){
+        if(adapter != null){
+            // adapter.notifyDataSetInvalidated();
             adapter.notifyDataSetChanged();
         }
     }

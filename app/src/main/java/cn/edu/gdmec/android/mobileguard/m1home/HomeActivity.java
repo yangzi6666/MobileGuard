@@ -30,12 +30,12 @@ import cn.edu.gdmec.android.mobileguard.m9advancedtools.AdvancedToolsActivity;
 public class HomeActivity extends AppCompatActivity {
     private GridView gv_home;
     private  long mExitTime;
-    //
+
     /**存储手机防盗密码的SP*/
     private SharedPreferences msharedPreferences;
     /**  设备管理员*/
     private DevicePolicyManager policyManager;
-    /**    申请权限     */
+    /**    申请权限    a */
     private ComponentName componentName;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
