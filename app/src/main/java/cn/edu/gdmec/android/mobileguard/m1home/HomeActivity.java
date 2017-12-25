@@ -81,7 +81,7 @@ private SharedPreferences msharedPreferences;
 
             }
         });
-        //1,获得设备管理员
+        //1,获得设备管理员。
         policyManager = (DevicePolicyManager)getSystemService(DEVICE_POLICY_SERVICE);
         //本地代码需要“手机防盗模块”完成后才能启用
         //2.申请权限，MyDeviceAdminReciever继承自DeviceAdminReceiver
