@@ -105,7 +105,13 @@
         <activity android:name=".m5virusscan.VirusScanSpeedActivity"/>
         <activity android:name=".m6cleancache.CacheClearListActivity"/>
         <activity android:name=".m6cleancache.CleanCacheActivity"/>
+        <receiver
+            android:name=".m8trafficmonitor.reciever.BootCompleteReciever"
+            android:enabled="true"
+            android:exported="true" />
 
+        <activity android:name=".m8trafficmonitor.OperatorSetActivity" />
+        <activity android:name=".m8trafficmonitor.TrafficMonitoringActivity"></activity>
     </application>
 
 </manifest>
